@@ -39,38 +39,37 @@ body {
   margin-bottom: 10px;
 }
 
-/* ===== LINKS COM ICONES PEQUENOS ===== */
+/* ===== LINKS EM GRADE 3x2 ===== */
 .links {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 botões por linha */
+  gap: 15px; /* espaço entre botões */
+  justify-items: center;
   margin-top: 20px;
 }
 
 .links a {
   width: 60px;
   height: 60px;
-  background: #5F2EEA;
+  background: #fff;       /* fundo branco */
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;       /* corta tudo que passar do botão */
+  overflow: hidden;
   transition: .3s ease-in-out;
 }
 
 .links a img {
-  max-width: 20px;        /* tamanho máximo do ícone */
+  max-width: 20px;
   max-height: 20px;
-  width: auto;            /* mantém proporção real */
-  height: auto;           /* mantém proporção real */
+  width: auto;
+  height: auto;
   display: block;
 }
 
-/* Hover nos botões */
 .links a:hover {
-  background: #3b1c90;
+  background: #dcdcdc;   /* leve escurecimento no hover */
   transform: scale(1.1);
 }
 
