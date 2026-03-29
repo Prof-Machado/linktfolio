@@ -62,8 +62,8 @@ body {
 
 /* ===== ÍCONES DOS BOTÕES ===== */
 .links a img {
-  max-width: 30px;  /* ícone maior para ficar proporcional */
-  max-height: 30px;
+  max-width: 50px;  
+  max-height: 50px;
   width: auto;
   height: auto;
   display: block;
