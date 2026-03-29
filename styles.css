@@ -49,7 +49,7 @@ body {
 }
 
 .links a {
-  width: 60px;     /* tamanho do botão circular */
+  width: 60px;      /* tamanho do botão circular */
   height: 60px;
   background: #5F2EEA;
   border-radius: 50%;
@@ -57,14 +57,13 @@ body {
   justify-content: center;
   align-items: center;
   transition: .3s ease-in-out;
-  overflow: hidden; /* impede que o ícone saia do botão */
 }
 
 .links a img {
-  max-width: 24px;   /* tamanho máximo do ícone */
-  max-height: 24px;
-  width: auto;        /* mantém proporção real */
-  height: auto;       /* mantém proporção real */
+  width: 20px;       /* força tamanho fixo do ícone */
+  height: 20px;
+  object-fit: contain; /* mantém proporção real do ícone */
+  display: block;
 }
 
 .links a:hover {
