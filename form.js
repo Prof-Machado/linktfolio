@@ -1,47 +1,36 @@
-// 1️⃣ Seleciona o formulário
-const form = document.getElementById("contactForm");
+document.getElementById("contactForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-// 2️⃣ Adiciona ouvinte para o submit
-form.addEventListener("submit", async (event) => {
-  event.preventDefault(); // evita recarregar a página
+  const form = e.target;
 
-  // 3️⃣ Coleta os dados do formulário
-  const name = event.target.name.value;
-  const email = event.target.email.value;
-  const message = event.target.message.value;
-
-  // 4️⃣ Adiciona timestamp
-  const timestamp = new Date().toISOString();
-
-  // 5️⃣ Cria o objeto que será enviado para o GitHub
-  const payload = { name, email, message, timestamp };
+  const data = {
+    name: form.name.value,
+    email: form.email.value,
+    message: form.message.value,
+    timestamp: new Date().toISOString()
+  };
 
   try {
-    // 6️⃣ Chama a API repository_dispatch do GitHub
-    const response = await fetch(
-      "https://api.github.com/repos/SEU_USUARIO/SEU_REPO/dispatches",
-      {
-        method: "POST",
-        headers: {
-          "Accept": "application/vnd.github+json",
-          "Authorization": "Bearer SEU_TOKEN_GITHUB" // ⚠️ colocar token seguro
-        },
-        body: JSON.stringify({
-          event_type: "new_submission",
-          client_payload: payload
-        })
-      }
-    );
+    const response = await fetch("/.netlify/functions/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
 
-    if (response.ok) {
+    const result = await response.json();
+
+    if (result.success) {
       alert("Formulário enviado com sucesso!");
-      form.reset(); // limpa os campos
+      form.reset();
     } else {
-      console.error(await response.text());
-      alert("Erro ao enviar o formulário.");
+      alert("Erro ao enviar formulário.");
+      console.error(result.error);
     }
+
   } catch (err) {
     console.error(err);
-    alert("Erro ao enviar o formulário.");
+    alert("Erro na conexão.");
   }
 });
