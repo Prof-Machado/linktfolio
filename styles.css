@@ -114,21 +114,23 @@ body {
 }
 
 .contact .terms {
-  display: flex;
-  align-items: center;        /* alinha verticalmente */
-  justify-content: center;    /* centraliza o bloco inteiro */
-  gap: 6px;                   /* pequeno espaçamento entre checkbox e label */
-  margin: 12px 0 20px 0;      /* espaço acima e abaixo do bloco */
+  display: inline-flex;       /* inline-flex mantém o bloco compacto */
+  align-items: center;        /* alinha checkbox e texto verticalmente */
+  justify-content: center;    /* centraliza em relação ao container */
+  margin: 15px 0 25px 0;      /* distância do bloco em relação aos outros elementos */
 }
 
 .contact .terms input[type="checkbox"] {
-  transform: scale(1.2);      /* aumenta checkbox para melhor visual */
-  margin: 0;                  /* remove margens extras que afastam do label */
+  transform: scale(1.2);      /* aumenta o checkbox */
+  margin: 0;                  /* remove qualquer margem padrão do navegador */
+  vertical-align: middle;     /* alinha melhor com o texto */
 }
 
 .contact .terms label {
   font-size: 0.95rem;
   color: #ccc;
+  margin-left: 5px;           /* garante pequeno espaço entre checkbox e texto */
+  vertical-align: middle;     /* alinha melhor com o checkbox */
 }
 
 .contact button {
