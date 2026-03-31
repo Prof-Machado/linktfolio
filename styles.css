@@ -22,7 +22,7 @@ body {
   /* Altura total da tela */
   min-height: 100vh;
 
-  /* 🔥 IMPORTANTE: padding removido
+  /* IMPORTANTE: padding removido
      Isso evita deslocamento do centro real */
 }
 
@@ -39,34 +39,9 @@ body {
 
   box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 
-  /* 🔥 garante que fique acima do GIF */
+  /* garante que fique acima do GIF */
   position: relative;
   z-index: 2;
-}
-
-/* ===== STICKER (CORRETO) ===== */
-.sticker {
-  position: fixed;
-
-  /* Centralização REAL na tela (viewport) */
-  top: 50%;
-  left: 50%;
-
-  /* Compensa o próprio tamanho */
-  transform: translate(-50%, -50%);
-
-  /* Tamanho EXATO */
-  width: 30px;
-  height: auto;
-
-  /* Não interfere com cliques */
-  pointer-events: none;
-
-  /* Fica atrás do conteúdo */
-  z-index: 1;
-
-  /* Leve transparência opcional */
-  opacity: 0.9;
 }
 
 /* ===== RESTO DO SEU CSS (mantido) ===== */
