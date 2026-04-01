@@ -3,15 +3,21 @@
 <head>
   <meta charset="UTF-8">
 
-  <!-- Responsividade correta -->
+  <!-- ===================================================== -->
+  <!-- RESPONSIVIDADE (ADAPTAÇÃO PARA CELULAR E DESKTOP)     -->
+  <!-- ===================================================== -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>MACHADO, M. Y. M.</title>
 
-  <!-- CSS externo -->
+  <!-- ===================================================== -->
+  <!-- CSS EXTERNO (ESTILO DO SITE)                          -->
+  <!-- ===================================================== -->
   <link rel="stylesheet" href="styles.css">
 
-  <!-- SEO / Compartilhamento -->
+  <!-- ===================================================== -->
+  <!-- SEO / COMPARTILHAMENTO (REDES SOCIAIS)                -->
+  <!-- ===================================================== -->
   <meta property="og:title" content="Machado - Scientific Portfolio">
   <meta property="og:description" content="Researcher in Materials Characterization and Process Modeling.">
   <meta property="og:image" content="https://prof-machado.github.io/linktfolio/assets/preview.png">
@@ -24,10 +30,27 @@
 
 <body>
 
-  <!-- CONTAINER CENTRAL -->
+  <!-- ===================================================== -->
+  <!-- CAMADA DE FUNDO COM GIF (NOVA IMPLEMENTAÇÃO)          -->
+  <!-- ===================================================== -->
+  <!--
+    IMPORTANTE:
+    - Essa div cria uma camada visual acima do fundo escuro
+    - O GIF fica "flutuando" na tela inteira
+    - NÃO interfere nos cliques (pointer-events: none no CSS)
+    - NÃO substitui o fundo, apenas cobre com transparência
+  -->
+  <div class="bg-gif"></div>
+
+
+  <!-- ===================================================== -->
+  <!-- CONTAINER CENTRAL (CONTEÚDO PRINCIPAL)                -->
+  <!-- ===================================================== -->
   <div class="container">
 
-    <!-- PERFIL -->
+    <!-- ===================================================== -->
+    <!-- PERFIL                                                -->
+    <!-- ===================================================== -->
     <div class="profile">
       <img src="assets/foto-perfil.png" alt="Foto Perfil" class="profile-img">
 
@@ -39,7 +62,9 @@
       <div class="divider"></div>
     </div>
 
-    <!-- LINKS -->
+    <!-- ===================================================== -->
+    <!-- LINKS (ÍCONES CLICÁVEIS)                              -->
+    <!-- ===================================================== -->
     <div class="links">
       <a href="http://lattes.cnpq.br/3291431101358065" target="_blank">
         <img src="assets/lattes.png">
@@ -61,7 +86,9 @@
       </a>
     </div>
 
-    <!-- FORMULÁRIO -->
+    <!-- ===================================================== -->
+    <!-- FORMULÁRIO                                            -->
+    <!-- ===================================================== -->
     <div class="contact">
       <h2>Contact for Collaborations and Projects:</h2>
 
@@ -81,7 +108,7 @@
 
   </div>
 
-
+  <!-- SCRIPT -->
   <script src="form.js"></script>
 
 </body>
