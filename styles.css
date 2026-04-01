@@ -90,7 +90,7 @@ padding: 40px 0; /* 👈 ESPAÇO NO TOPO E NO FUNDO */
 .divider {
   height: 1px;
   width: 80%;              /* Não ocupa toda largura */
-  background-color: #555;  /* Cor suave */
+  background-color: #ffffff;  /* Cor suave */
   margin: 20px auto;       /* Centraliza horizontalmente */
 }
 
