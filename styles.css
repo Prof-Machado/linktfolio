@@ -7,24 +7,19 @@
   box-sizing: border-box;
 }
 
-
 /* ===================================================== */
 /* ===== BODY (BASE DA PÁGINA) ========================== */
 /* ===================================================== */
 body {
   font-family: Arial, sans-serif;
-
   background-color: #0A0F23;
   color: #ffffff;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   min-height: 100vh;
   padding: 40px 0;
 }
-
 
 /* ===================================================== */
 /* ===== CAMADA 1: GIF DE FUNDO ========================= */
@@ -33,95 +28,58 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-
   width: 100%;
   height: 100%;
-
   background: url("assets/seu-gif.gif") center/cover no-repeat;
-
   pointer-events: none;
   z-index: 1;
-
-  opacity: 0.5;
+  opacity: 0.5; /* controla intensidade do GIF */
 }
-
 
 /* ===================================================== */
 /* ===== CAMADA 2: OVERLAY (ESCURECE + BLUR) ============ */
 /* ===================================================== */
+/* IMPORTANTE:
+   - Fica ACIMA do GIF
+   - Fica ABAIXO do conteúdo
+   - Escurece o fundo (melhora contraste)
+   - Aplica blur real (efeito vidro)
+*/
 .bg-overlay {
   position: fixed;
   top: 0;
   left: 0;
-
   width: 100%;
   height: 100%;
 
-  /* 🔥 MENOS PESADO (melhora o vidro) */
-  background: rgba(0, 0, 0, 0.35);
+  /* Cor escura semi-transparente */
+  background: rgba(0, 0, 0, 0.5);
 
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  /* Blur moderno */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 
   pointer-events: none;
   z-index: 2;
 }
-
 
 /* ===================================================== */
 /* ===== CONTAINER PRINCIPAL ============================ */
 /* ===================================================== */
 .container {
   text-align: center;
-
   width: 100%;
   max-width: 450px;
-
-  padding: 28px;
+  padding: 25px;
   margin: 20px 0;
+  background: #12182F;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 
-  /* 🔥 VIDRO REAL (equilíbrio cor + transparência) */
-  background: rgba(18, 24, 47, 0.45);
-
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-
-  /* ❌ REMOVE BORDA ARTIFICIAL */
-  border: none;
-
-  border-radius: 20px;
-
-  /* 🔥 SOMBRA SUAVE + BRILHO INTERNO */
-  box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-
+  /* AGORA ACIMA DE TODAS AS CAMADAS */
   position: relative;
   z-index: 3;
-
-  /* 🔥 IMPORTANTE PRA UNIFICAR BORDA */
-  overflow: hidden;
 }
-
-
-/* 🔥 REFLEXO SUAVE (SEM MARCAR BORDA) */
-.container::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-
-  background: linear-gradient(
-    140deg,
-    rgba(255,255,255,0.18) 0%,
-    rgba(255,255,255,0.08) 30%,
-    transparent 60%
-  );
-
-  opacity: 0.25;
-  pointer-events: none;
-}
-
 
 /* ===================================================== */
 /* ===== PERFIL ======================================== */
@@ -138,17 +96,15 @@ body {
   line-height: 1.5;
 }
 
-
 /* ===================================================== */
 /* ===== DIVISOR ======================================= */
 /* ===================================================== */
 .divider {
   height: 1px;
   width: 80%;
-  background-color: rgba(255,255,255,0.3);
+  background-color: rgba(255,255,255,0.4);
   margin: 20px auto;
 }
-
 
 /* ===================================================== */
 /* ===== IMAGEM DE PERFIL ============================== */
@@ -156,14 +112,11 @@ body {
 .profile-img {
   width: 120px;
   height: 120px;
-
   border-radius: 50%;
   object-fit: contain;
-
   display: block;
   margin: 0 auto 20px auto;
 }
-
 
 /* ===================================================== */
 /* ===== LINKS ========================================= */
@@ -178,20 +131,12 @@ body {
 .links a {
   width: 60px;
   height: 60px;
-
-  background: rgba(255,255,255,0.08);
-
+  background: #ffffff;
   border-radius: 50%;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-
-  border: 1px solid rgba(255,255,255,0.12);
-
+  overflow: hidden;
   transition: 0.3s ease-in-out;
 }
 
@@ -202,9 +147,8 @@ body {
 
 .links a:hover {
   transform: scale(1.1);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
-
 
 /* ===================================================== */
 /* ===== FORMULÁRIO ==================================== */
@@ -215,49 +159,19 @@ body {
   font-size: 0.9rem;
 }
 
-
-/* 🔥 INPUTS EM GLASS */
 .contact form input,
 .contact form textarea {
   width: 90%;
-  padding: 10px 12px;
+  padding: 8px 10px;
   margin: 6px 0;
-
-  border-radius: 8px;
-
-  background: rgba(255, 255, 255, 0.06);
-
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-
-  border: 1px solid rgba(255,255,255,0.12);
-
-  color: #ffffff;
+  border-radius: 6px;
+  border: none;
   font-size: 0.95rem;
 }
 
 .contact form textarea {
   resize: vertical;
 }
-
-
-/* 🔥 PLACEHOLDER VISÍVEL */
-.contact form input::placeholder,
-.contact form textarea::placeholder {
-  color: rgba(255,255,255,0.6);
-}
-
-
-/* 🔥 FOCO ESTILO IOS */
-.contact form input:focus,
-.contact form textarea:focus {
-  outline: none;
-
-  border: 1px solid rgba(255,255,255,0.25);
-
-  background: rgba(255, 255, 255, 0.1);
-}
-
 
 /* ===================================================== */
 /* ===== TERMOS ======================================== */
@@ -269,26 +183,21 @@ body {
   margin: 15px 0 25px 0;
 }
 
-
 /* ===================================================== */
 /* ===== BOTÃO ========================================= */
 /* ===================================================== */
 .contact button {
-  background: rgba(255,255,255,0.9);
+  background: #ffffff;
   color: #000000;
-
-  border: none;
-
+  border: 1px solid #cccccc;
   padding: 14px 20px;
-  border-radius: 10px;
-
+  border-radius: 8px;
   font-size: 1.1rem;
-
   cursor: pointer;
   transition: 0.3s ease-in-out;
 }
 
 .contact button:hover {
-  background: #ffffff;
+  background: #e5e5e5;
   transform: scale(1.05);
 }
