@@ -16,6 +16,11 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/favicon.png">
+
+  <!-- iOS -->
+  <link rel="apple-touch-icon" href="assets/icon-512.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   
   <!-- ===================================================== -->
   <!-- CSS EXTERNO (ESTILO DO SITE)                          -->
@@ -39,6 +44,15 @@
 <meta name="twitter:title" content="Machado - Scientific Portfolio">
 <meta name="twitter:description" content="UFPA">
 <meta name="twitter:image" content="https://prof-machado.github.io/linktfolio/assets/preview.png">
+
+  <!-- ===================================================== -->
+  <!-- PWA -->
+  <!-- ===================================================== -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0A0F23">
+</head>
+
+<body>
   
   <!-- ===================================================== -->
   <!-- CAMADA 1: GIF DE FUNDO                               -->
@@ -128,5 +142,11 @@
 
   <script src="form.js"></script>
 
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js");
+}
+</script>
+  
 </body>
 </html>
