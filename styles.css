@@ -75,27 +75,43 @@ body {
   padding: 28px;
   margin: 20px 0;
 
-  /* 🔥 vidro mais equilibrado */
-  background: rgba(18, 24, 47, 0.18);
+  /* 🔥 vidro mais limpo (menos leite) */
+  background: rgba(18, 24, 47, 0.02);
 
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 
   border-radius: 20px;
-
-  /* ❗ remove QUALQUER interferência de borda */
   border: none;
 
-  /* 🔥 sombra mais limpa (sem “halo” nas bordas) */
-  box-shadow:
-  0 12px 35px rgba(0, 0, 0, 0.35),
-  inset 0 1px 0 rgba(18, 24, 47, 0.12);
+  /* 🔥 contraste real (sem glow plástico) */
+  box-shadow: 
+    0 1px 2px rgba(143, 143, 143, 0.15),          /* profundidade */
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),  /* linha de luz real */
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);        /* corte inferior */
 
   position: relative;
   z-index: 3;
 
-  /* 🔥 ESSENCIAL: corrige diferença borda x centro */
+  overflow: hidden;
   background-clip: padding-box;
+}
+
+/* 🔥 REFLEXO DIRECIONAL (VIDRO REAL) */
+.container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.08) 1%,
+    transparent 35%
+  );
+
+  pointer-events: none;
 }
 
 /* ===================================================== */
@@ -108,7 +124,7 @@ body {
 
 .profile p {
   font-size: 1rem;
-  color: #cccccc;
+  color: #ffffff;
   margin-bottom: 12px;
   line-height: 1.5;
 }
@@ -119,7 +135,7 @@ body {
 .divider {
   height: 1px;
   width: 80%;
-  background-color: rgba(255,255,255,0.4);
+  background-color: rgb(255, 255, 255);
   margin: 20px auto;
 }
 
@@ -185,9 +201,9 @@ body {
   border-radius: 6px;
 
   /* 🔥 transparente como o container */
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.02);
 
-  border: 1px solid rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.08);
 
   color: #ffffff;
   font-size: 0.95rem;
@@ -222,6 +238,6 @@ body {
 }
 
 .contact button:hover {
-  background: #e5e5e5;
+  background: #ffffff;
   transform: scale(1.05);
 }
