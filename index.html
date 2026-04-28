@@ -126,19 +126,28 @@
 
       <form id="contactForm">
         <input type="text" name="name" placeholder="Name" required>
-        <input type="email" name="email" placeholder="E-mail" rows="1" required>
+        <input type="email" name="email" placeholder="E-mail" required>
         <textarea name="message" placeholder="Text" rows="2" required></textarea>
 
-        <div class="terms">
-          <input type="checkbox" id="terms" required>
-          <label for="terms">Accept terms of use</label>
-        </div>
+        <div class="terms-and-button">
+          <div class="terms">
+            <label class="switch">
+              <input type="checkbox" id="terms" required>
+              <span class="slider"></span>
+            </label>
+            <label for="terms">Accept terms of use</label>
+          </div>
 
-        <button type="submit">submit</button>
+          <button type="submit" class="button">
+            <div class="button-outer">
+             <div class="button-inner">
+               <span>submit</span>
+             </div>
+            </div>
+          </button>
+         </div>
       </form>
     </div>
-
-  </div>
 
   <script src="form.js"></script>
 
