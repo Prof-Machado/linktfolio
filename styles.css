@@ -1,327 +1,730 @@
 /* ===================================================== */
-/* ===== RESET GLOBAL ================================== */
+/* RESET */
 /* ===================================================== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Inter",sans-serif;
 }
 
 /* ===================================================== */
-/* ===== VARIÁVEIS GLOBAIS ============================== */
+/* BASE */
 /* ===================================================== */
-:root {
-  --accent: #7cc8ff;
-  --accent-2: #4aa3ff;
-  --line: rgba(255,255,255,0.15);
-  --line-strong: rgba(255,255,255,0.4);
+body{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:40px 0;
 
-  --shadow-soft: 0 8px 25px rgba(0,0,0,0.25);
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  background:#dfe7ec;
+  overflow:hidden;
+  color:#ffffff;
 }
 
 /* ===================================================== */
-/* ===== BODY (BASE DA PÁGINA) ========================== */
+/* FUNDO (ANIMADO MAIS VISÍVEL) */
 /* ===================================================== */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #0A0F23;
-  color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 40px 0;
+.bg-gif{
+  position:fixed;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+
+  background:
+    radial-gradient(circle at 70% 30%, rgba(131, 168, 186, 0.9), transparent 55%),
+    radial-gradient(circle at 30% 70%, rgba(131, 168, 186, 0.7), transparent 55%),
+    url("assets/bkg.png") center/contain no-repeat;
+
+  background-size:
+    130%,
+    130%,
+    110%;
+
+  background-repeat:no-repeat;
+
+  /* blur menor pra aparecer mais */
+  filter:blur(4px);
+
+  animation: bgMove 18s ease-in-out infinite alternate;
 }
 
 /* ===================================================== */
-/* ===== CAMADA 1: GIF DE FUNDO ========================= */
+/* ANIMAÇÃO MAIS PERCEPTÍVEL */
 /* ===================================================== */
-.bg-gif {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url("assets/seu-gif.gif") center/cover no-repeat;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.5;
+@keyframes bgMove{
+  0%{
+    background-position:
+      60% 20%,
+      40% 80%,
+      center;
+    transform:scale(1) rotate(0deg);
+  }
+
+  50%{
+    background-position:
+      40% 60%,
+      60% 40%,
+      center;
+    transform:scale(1.04) rotate(1deg);
+  }
+
+  100%{
+    background-position:
+      80% 30%,
+      20% 70%,
+      center;
+    transform:scale(1.02) rotate(-1deg);
+  }
 }
 
 /* ===================================================== */
-/* ===== CAMADA 2: OVERLAY ============================== */
+/* OVERLAY */
 /* ===================================================== */
-.bg-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  pointer-events: none;
-  z-index: 2;
+.bg-overlay{
+  position:fixed;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+
+  background:rgba(255,255,255,0.04);
+  backdrop-filter:blur(6px);
 }
 
 /* ===================================================== */
-/* ===== CONTAINER PRINCIPAL ============================ */
+/* CONTAINER (UPGRADE 3D SUAVE) */
 /* ===================================================== */
-.container {
-  text-align: center;
-  width: 100%;
-  max-width: 450px;
-  padding: 28px;
-  margin: 20px 0;
+.container{
+  position:relative;
+  z-index:3;
 
-  background: rgba(18, 24, 47, 0.02);
+  width:100%;
+  max-width:450px;
+  padding:28px;
+  margin:20px 0;
 
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  border-radius:34px;
 
-  border-radius: 20px;
-  border: none;
+  background: rgba(252, 252, 251, 0.05);
 
-  box-shadow: 
-    0 1px 2px rgba(143, 143, 143, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(42px) saturate(120%);
+  -webkit-backdrop-filter: blur(42px) saturate(120%);
 
-  position: relative;
-  z-index: 3;
+  border:1px solid rgba(255, 255, 255, 0.35);
 
-  overflow: hidden;
-  background-clip: padding-box;
+  box-shadow:
+    0 20px 30px rgba(0,0,0,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.15);
+
+  text-align:center;
+
+  transform-style: preserve-3d;
+  transition: all 0.4s ease;
 }
 
-/* REFLEXO */
-.container::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
+.container:hover{
+  transform: translateY(-4px) scale(1.01);
+}
+
+.container::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:34px;
 
   background: linear-gradient(
     120deg,
-    rgba(255, 255, 255, 0.25) 0%,
-    rgba(255, 255, 255, 0.08) 1%,
-    transparent 35%
+    rgba(255,255,255,0.18),
+    rgba(255,255,255,0.03) 45%,
+    transparent 65%
   );
 
-  pointer-events: none;
+  pointer-events:none;
+}
+
+/* profundidade interna (opcional, mas recomendado) */
+.container > *{
+  transform: translateZ(10px);
 }
 
 /* ===================================================== */
-/* ===== PERFIL ======================================== */
+/* PERFIL */
 /* ===================================================== */
-.profile h1 {
-  font-size: 1.8rem;
-  margin-bottom: 15px;
+
+.profile h1{
+  font-size:28px;
+  font-weight:600;
+  letter-spacing:-0.03em;
 }
 
-.profile p {
-  font-size: 1rem;
-  color: #ffffff;
-  margin-bottom: 12px;
-  line-height: 1.5;
+.profile p{
+  font-size:14px;
+  opacity:.75;
+  margin-top:6px;
+}
+
+/* FOTO */
+.profile-img{
+  width:128px;
+  height:128px;
+  border-radius:50%;
+  object-fit:cover;
+
+  margin:0 auto 22px;
+
+  position:relative;
+
+  border:4px solid rgba(255, 255, 255, 0.445);
+
+  box-shadow:
+    0 10px 10px rgba(130, 150, 160, 0.37),
+    inset 0 -8px 15px rgba(255,255,255,0.25),
+    inset 0 8px 15px rgba(0,0,0,0.08);
+
+  transition:all .4s cubic-bezier(.2,.8,.2,1);
+
+  opacity:0.90;
+  overflow:hidden;
+}
+
+/* CAMADA DE LUZ */
+.profile-img::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255,255,255,0.5),
+    transparent 70%
+  );
+
+  transform: translateY(-100%) rotate(25deg);
+  transition: all .6s ease;
+}
+
+/* CAMADA DE PROFUNDIDADE */
+.profile-img::after{
+  content:"";
+  position:absolute;
+  inset:6px;
+  border-radius:50%;
+
+  box-shadow:
+    inset 0 -10px 20px rgba(255,255,255,0.3),
+    inset 0 10px 20px rgba(0,0,0,0.15);
+
+  pointer-events:none;
+}
+
+/* HOVER */
+.profile-img:hover{
+  transform:scale(1.08) rotate(4deg);
+
+  border-color:rgba(255,255,255,0.6);
+
+  box-shadow:
+    10px 10px 20px rgba(131, 168, 186, 0.35),
+    inset 0 -12px 25px rgba(255,255,255,0.35),
+    inset 0 12px 25px rgba(0,0,0,0.12);
+}
+
+/* ANIMAÇÃO DE LUZ */
+.profile-img:hover::before{
+  transform: translateY(100%) rotate(25deg);
+}
+
+/* CLIQUE */
+.profile-img:active{
+  transform:scale(0.95);
+
+  box-shadow:
+    0 5px 10px rgba(0,0,0,0.3),
+    inset 0 -15px 30px rgba(255,255,255,0.6),
+    inset 0 15px 30px rgba(0,0,0,0.25);
+}
+
+
+/* ===================================================== */
+/* DIVIDER (RESTAURADO) */
+/* ===================================================== */
+
+.divider{
+  width:100%;
+  height:3px;
+
+  margin:20px 0;
+
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.671),
+    transparent
+  );
+
+  opacity:0.6;
+}
+/* ===================================================== */
+/* LINKS */
+/* ===================================================== */
+
+.links{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  justify-items:center;
+}
+
+.links a{
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  position:relative;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.13),
+    rgba(255,255,255,0.05)
+  );
+
+  backdrop-filter: blur(6px);
+
+  border:1px solid rgba(255,255,255,0.2);
+
+  overflow:hidden;
+
+  transition: all .4s cubic-bezier(.2,.8,.2,1);
+}
+
+/* CAMADA INTERNA (efeito "front/back") */
+.links a::before{
+  content:"";
+  position:absolute;
+  inset:4px;
+  border-radius:50%;
+
+  background: linear-gradient(
+    135deg,
+    rgba(131, 168, 186, 0.911),
+    rgba(131,168,186,0.2)
+  );
+
+  z-index:0;
+  transition: all .4s ease;
+}
+
+/* GLASS LIGHT (efeito vidro passando) */
+.links a::after{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.705),
+    transparent 70%
+  );
+
+  transform: translateY(-100%) rotate(20deg);
+  transition: all .6s ease;
+}
+
+/* ÍCONE */
+.links img{
+  width:28px;
+  z-index:1;
+
+  filter: brightness(0) invert(1) opacity(0.7);
+  transition: all .3s ease;
+}
+
+/* HOVER */
+.links a:hover{
+  transform: translateY(-6px) scale(1.08);
+
+  box-shadow:
+    0 10px 20px rgba(131, 168, 186, 0.705),
+    0 0 20px rgba(131, 168, 186, 0.705);
+}
+
+/* brilho animado */
+.links a:hover::after{
+  transform: translateY(100%) rotate(20deg);
+}
+
+/* intensifica cor interna */
+.links a:hover::before{
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.425),
+    rgb(131, 168, 186)
+  );
+}
+
+/* ícone mais forte */
+.links a:hover img{
+  opacity:1;
+  transform: scale(1.1);
+}
+/* ===================================================== */
+/* FORMULÁRIO - ESTILO GERAL */
+/* ===================================================== */
+
+.contact h2{
+  margin-top:40px;
+  margin-bottom:15px;
+  font-size:14px;
+  opacity:.85;
+}
+
+.contact input:not([type="checkbox"]),
+.contact textarea{
+  width:90%;
+  padding:1rem;
+  margin:6px 0;
+  border:none;
+  border-radius:1rem;
+  background: rgba(255, 255, 255, 0.034);
+  box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.151), -6px -6px 15px rgba(255, 255, 255, 0.05);
+  color:#ffffff;
+  transition:0.3s;
+}
+
+.contact input:not([type="checkbox"]):focus,
+.contact textarea:focus{
+  outline:none;
+  box-shadow: inset 6px 6px 15px rgba(0, 0, 0, 0.055), inset -6px -6px 15px rgba(255, 255, 255, 0.068);
+  background: rgba(255, 255, 255, 0.041);
+}
+
+.contact input::placeholder,
+.contact textarea::placeholder{
+  color:#ffffff;
+  opacity:0.7;
+}
+
+.contact textarea ~ *{
+  margin-top:25px;
 }
 
 /* ===================================================== */
-/* ===== DIVISOR ======================================= */
+/* LAYOUT TERMS + BOTÃO - CENTRALIZADO */
 /* ===================================================== */
-.divider {
-  height: 1px;
-  width: 80%;
-  background-color: rgb(255, 255, 255);
-  margin: 20px auto;
+
+.contact .terms-and-button {
+  display: flex;
+  justify-content: center;        /* centraliza horizontalmente */
+  align-items: center;
+  gap:10px;                      /* espaço entre o terms e o botão - aumentei um pouco */
+  margin: 25px 0 20px 0;
+  width: 100%;
+  flex-wrap: wrap;
 }
 
-/* ===================================================== */
-/* ===== IMAGEM DE PERFIL ============================== */
-/* ===================================================== */
-.profile-img {
-  width: 128px;
-  height: 128px;
-  border-radius: 50%;
-  object-fit: cover;
-
-  display: block;
-  margin: 0 auto 22px;
-
-  border: 5px solid var(--line-strong);
-
-  box-shadow: 
-    0 0 0 6px rgba(124, 200, 255, 0.12),
-    var(--shadow-soft);
-
-  transition: all 0.4s var(--ease-out);
-}
-
-.profile-img:hover {
-  transform: scale(1.06) rotate(4deg);
-  border-color: var(--accent);
-}
-
-/* ===================================================== */
-/* ===== LINKS ========================================= */
-/* ===================================================== */
-
-.links {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-
-  justify-items: center; /* garante centralização horizontal */
-  align-items: center;   /* garante centralização vertical */
-}
-
-.links a {
-  width: 64px;
-  height: 64px;
-
-  border-radius: 50%;
-
+/* Terms fica à esquerda do grupo centralizado */
+.contact .terms {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap:12px;
+  flex-shrink: 0;
+}
 
-  background: #ffffff; /* fundo branco FIXO */
-  border: 1px solid var(--line);
-
-  transition: all 0.35s ease;
+/* Botão - sem margin-left auto (não precisamos mais) */
+.contact button.button {
+  margin: 0;                      /* remove o auto que empurrava para direita */
 }
 
 /* ===================================================== */
-/* ===== EFEITO APENAS NO HOVER ========================= */
+/* SWITCH */
 /* ===================================================== */
 
-.links a:hover {
-  transform: translateY(-4px) scale(1.08);
-
-  background: linear-gradient(
-    135deg,
-    var(--accent),
-    var(--accent-2)
-  );
-
-  box-shadow:
-    0 10px 30px rgba(124, 200, 255, 0.3),
-    0 0 20px rgba(124, 200, 255, 0.2);
+.contact .switch{
+  font-size:16px;
+  position:relative;
+  display:inline-block;
+  width:3.2em;
+  height:1.8em;
 }
 
-.links a img {
-  width: 28px;
-  height: auto; /* mantém proporção correta */
+.contact .switch input{
+  opacity:0;
+  width:0;
+  height:0;
+}
+
+.contact .slider{
+  position:absolute;
+  cursor:pointer;
+  inset:0;
+  background:rgba(255,255,255,0.25);
+  border-radius:999px;
+  box-shadow: inset 2px 5px 10px rgba(0,0,0,0.25), 0 0 5px rgba(131,168,186,0.2);
+  transition:.4s cubic-bezier(.2,.8,.2,1);
+}
+
+.contact .slider::before{
+  content:"";
+  position:absolute;
+  height:1.2em;
+  width:1.2em;
+  left:0.3em;
+  bottom:0.3em;
+  border-radius:50%;
+  background:linear-gradient(145deg,#ffffff,#dfe9ef);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.6);
+  transition:.4s cubic-bezier(.2,.8,.2,1);
+}
+
+.contact .switch input:checked + .slider{
+  background:linear-gradient(135deg,#83a8ba,rgba(131,168,186,0.6));
+  box-shadow: inset 2px 5px 12px rgba(0,0,0,0.4), 0 0 10px rgba(131,168,186,0.6);
+}
+
+.contact .switch input:checked + .slider::before{
+  transform:translateX(1.4em);
+}
+
+.contact .switch:hover .slider{
+  box-shadow: inset 2px 5px 12px rgba(0,0,0,0.3), 0 0 12px rgba(131,168,186,0.5);
+}
+
+.contact .switch input:active + .slider::before{
+  transform:scale(0.9);
 }
 
 /* ===================================================== */
-/* ===== FORMULÁRIO ==================================== */
+/* BOTÃO */
 /* ===================================================== */
-.contact h2 {
-  margin-top: 40px;
-  margin-bottom: 15px;
-  font-size: 0.9rem;
-}
 
-.contact form input,
-.contact form textarea {
-  width: 90%;
-  padding: 8px 10px;
-  margin: 6px 0;
-
-  border-radius: 6px;
-
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255,255,255,0.08);
-
-  color: #ffffff;
-  font-size: 0.95rem;
-}
-
-.contact form textarea {
-  resize: vertical;
-}
-
-/* ===================================================== */
-/* ===== TERMOS ======================================== */
-/* ===================================================== */
-.contact .terms {
-  display: inline-flex;
+.contact button.button{
+  all: unset;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  margin: 15px 0 25px 0;
-}
-
-/* ===================================================== */
-/* ===== BOTÃO ========================================= */
-/* ===================================================== */
-.contact button {
-  background: #ffffff;
-  color: #000000;
-
-  border: 1px solid var(--line);
-  border-radius: 8px;
-
-  padding: 14px 20px;
-  font-size: 1.1rem;
-
   cursor: pointer;
-
-  transition: all 0.3s ease;
+  border-radius: 1rem;
+  background: transparent;
+  white-space: nowrap;
 }
 
-/* HOVER IGUAL AO DOS ÍCONES */
-.contact button:hover {
-  transform: scale(1.05);
+.contact .button-outer{
+  border-radius: inherit;
+}
 
-  background: linear-gradient(
-    135deg,
-    var(--accent),
-    var(--accent-2)
+.contact .button-inner{
+  border-radius: inherit;
+  padding: 10px 18px;
+  background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(255,255,255,0.05));
+  box-shadow: 6px 6px 15px rgba(0,0,0,0.15),
+              -6px -6px 15px rgba(255,255,255,0.08),
+              inset 2px 2px 6px rgba(255,255,255,0.4),
+              inset -2px -2px 6px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.contact .button-inner span{
+  font-size: 0.95rem;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.contact button.button:hover .button-inner{
+  box-shadow: 8px 8px 18px rgba(0,0,0,0.2),
+              -8px -8px 18px rgba(255,255,255,0.1),
+              inset 4px 4px 10px rgba(255,255,255,0.5),
+              inset -4px -4px 10px rgba(0,0,0,0.15);
+}
+
+.contact button.button:active .button-inner{
+  transform: scale(0.97);
+  box-shadow: inset 6px 6px 12px rgba(0,0,0,0.15),
+              inset -6px -6px 12px rgba(255,255,255,0.3);
+}
+
+/* ===================================================== */
+/* RESPONSIVO */
+/* ===================================================== */
+@media(max-width:480px){
+
+  body{
+    padding:20px 12px;
+  }
+
+  .container{
+    max-width:100%;
+    padding:22px 18px;
+  }
+
+  .links a{
+    width:55px;
+    height:55px;
+  }
+
+  .profile-img{
+    width:110px;
+    height:110px;
+  }
+}
+
+
+
+/* ===================================================== */
+/* LOADING SCREEN (VIDRO + LUZ DINÂMICA) */
+/* ===================================================== */
+.loader{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background: radial-gradient(circle at center, #83a8ba33, #000000);
+
+  backdrop-filter: blur(20px);
+}
+
+.loader::before{
+  content:"";
+  position:absolute;
+  width:200%;
+  height:200%;
+
+  background: conic-gradient(
+    from 0deg,
+    transparent,
+    rgba(255,255,255,0.2),
+    transparent
   );
 
-  color: #07111f;
-
-  box-shadow:
-    0 10px 30px rgba(124,200,255,0.4),
-    0 0 20px rgba(124,200,255,0.3);
+  animation: spinLight 2s linear infinite; /* 4s → 2s */
 }
 
-.contact button:active {
-  transform: scale(0.97);
+@keyframes spinLight{
+  to{ transform:rotate(360deg); }
+}
+
+/* texto loading */
+.loader span{
+  font-size:14px;
+  letter-spacing:4px;
+  color:white;
+  animation: pulse 0.75s infinite; /* 1.5s → 0.75s */
+}
+
+@keyframes pulse{
+  0%,100%{opacity:0.4;}
+  50%{opacity:1;}
 }
 
 /* ===================================================== */
-/* ===== RESPONSIVIDADE ================================ */
+/* CONTAINER INTERATIVO (MOUSE TRACKING BASE) */
 /* ===================================================== */
-@media (max-width: 480px) {
+.container{
+  transition: transform 0.1s linear;
+}
 
-  body {
-    padding: 20px 12px;
+/* brilho dinâmico seguindo mouse */
+.container::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+
+  background: radial-gradient(
+    circle at var(--x,50%) var(--y,50%),
+    rgba(255,255,255,0.15),
+    transparent 40%
+  );
+
+  pointer-events:none;
+}
+
+/* ===================================================== */
+/* ANIMAÇÃO INICIAL ULTRA COMPLEXA */
+/* ===================================================== */
+
+.container{
+  animation: ultraIntro 4s cubic-bezier(.2,.8,.2,1) forwards; /* 8s → 4s */
+}
+
+@keyframes ultraIntro{
+
+  0%{
+    opacity:0;
+    transform:
+      perspective(1200px)
+      rotateX(40deg)
+      rotateY(-30deg)
+      scale(0.5)
+      translateY(200px);
+    filter:blur(30px);
   }
 
-  .container {
-    max-width: 100%;
-    padding: 22px 18px;
-    margin: 0 auto;
+  20%{
+    opacity:1;
+    transform:
+      perspective(1200px)
+      rotateX(-10deg)
+      rotateY(10deg)
+      scale(1.1)
+      translateY(-20px);
   }
 
-  .profile h1 {
-    font-size: 1.5rem;
+  40%{
+    transform:
+      perspective(1200px)
+      rotateX(5deg)
+      rotateY(-5deg)
+      scale(0.97)
+      translateY(10px);
   }
 
-  .links {
-    gap: 12px;
+  60%{
+    transform:
+      perspective(1200px)
+      rotateX(2deg)
+      rotateY(2deg)
+      scale(1.02);
   }
 
-  .links a {
-    width: 55px;
-    height: 55px;
+  100%{
+    transform:
+      perspective(1200px)
+      rotateX(0)
+      rotateY(0)
+      scale(1)
+      translateY(0);
+    filter:blur(0);
   }
+}
 
-  .links a img {
-    max-width: 30px;
-    max-height: 30px;
+/* conteúdo entrando em cascata */
+.container > *{
+  opacity:0;
+  transform:translateY(40px);
+  animation: cascade 0.5s ease forwards; /* 1s → 0.5s */
+}
+
+/* delays reduzidos pela metade */
+.container > *:nth-child(1){animation-delay:1s;}
+.container > *:nth-child(2){animation-delay:1.15s;}
+.container > *:nth-child(3){animation-delay:1.3s;}
+.container > *:nth-child(4){animation-delay:1.45s;}
+.container > *:nth-child(5){animation-delay:1.6s;}
+.container > *:nth-child(6){animation-delay:1.75s;}
+
+@keyframes cascade{
+  to{
+    opacity:1;
+    transform:translateY(0);
   }
 }
